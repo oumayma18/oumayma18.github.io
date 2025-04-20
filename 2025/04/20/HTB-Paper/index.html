@@ -52,7 +52,7 @@
 <meta property="og:image" content="https://oumayma18.github.io/img/paper-htb/root.png">
 <meta property="og:image" content="https://oumayma18.github.io/img/paper-htb/Ghibli3.gif">
 <meta property="article:published_time" content="2025-04-20T21:41:23.000Z">
-<meta property="article:modified_time" content="2025-04-20T23:02:01.316Z">
+<meta property="article:modified_time" content="2025-04-20T23:08:02.179Z">
 <meta property="article:author" content="Oumayma:)">
 <meta property="article:tag" content="HackTheBox">
 <meta property="article:tag" content="Easy machine">
@@ -251,7 +251,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          139 words
+          136 words
         
       </span>
     
@@ -347,7 +347,7 @@
 <p><img src="/img/paper-htb/hidden-url.png" srcset="/img/loading.gif" lazyload></p>
 <p>We add it into our hosts file:</p>
 <p><img src="/img/paper-htb/newhost.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="Initial-Access"><a href="#Initial-Access" class="headerlink" title="Initial Access:"></a>Initial Access:</h1><h2 id="Rocket-chat"><a href="#Rocket-chat" class="headerlink" title="Rocket.chat:"></a>Rocket.chat:</h2><p>The registration URL takes us to the chat system <code>rocket.chat</code>.</p>
+<h1 id="Initial-Access"><a href="#Initial-Access" class="headerlink" title="Initial Access"></a>Initial Access</h1><h2 id="Rocket-chat"><a href="#Rocket-chat" class="headerlink" title="Rocket.chat"></a>Rocket.chat</h2><p>The registration URL takes us to the chat system <code>rocket.chat</code>.</p>
 <p><img src="/img/paper-htb/rocket-chat.png" srcset="/img/loading.gif" lazyload></p>
 <p>After entering we see the only channel, <strong>#general</strong>.<br>Within the channel, multiple messages were visible, some of which mentioned a bot and listed the commands it accepts. Based on this, we initiated a conversation with the bot to further explore its functionality.</p>
 <p><img src="/img/paper-htb/general.png" srcset="/img/loading.gif" lazyload></p>
@@ -360,7 +360,7 @@
 <p><img src="/img/paper-htb/config.png" srcset="/img/loading.gif" lazyload></p>
 <p>We use the password via SSH with the user <code>dwight</code>, we manage to obtain a shell and the flag <code>user.txt</code>.</p>
 <p><img src="/img/paper-htb/ssh.png" srcset="/img/loading.gif" lazyload></p>
-<h1 id="Privilege-escalation"><a href="#Privilege-escalation" class="headerlink" title="Privilege escalation:"></a>Privilege escalation:</h1><p>It’s time to escalate our privileges to the root user. To begin, we need to enumerate the system for further information. After downloading <code>linpeas.sh</code>, the script revealed that the system is vulnerable to CVE-2021-3560.</p>
+<h1 id="Privilege-escalation"><a href="#Privilege-escalation" class="headerlink" title="Privilege escalation"></a>Privilege escalation</h1><p>It’s time to escalate our privileges to the root user. To begin, we need to enumerate the system for further information. After downloading <code>linpeas.sh</code>, the script revealed that the system is vulnerable to CVE-2021-3560.</p>
 <p><img src="/img/paper-htb/cvepriv.png" srcset="/img/loading.gif" lazyload></p>
 <p>According to this <a target="_blank" rel="noopener" href="https://github.blog/security/vulnerability-research/privilege-escalation-polkit-root-on-linux-with-bug/">GitHub blog post</a>, CVE-2021-3560 is a vulnerability in PolKit (PolicyKit), a system service used to manage permissions. The flaw allows an attacker with limited access to gain root privileges. By exploiting this vulnerability, the attacker can trick the system into creating a new superuser account or escalating their own privileges to root, bypassing security restrictions that would normally prevent this.</p>
 <p>To exploit this vulnerability, we will use a script that automates the process. The script, available on <a target="_blank" rel="noopener" href="https://github.com/secnigma/CVE-2021-3560-Polkit-Privilege-Esclation">GitHub</a></p>
@@ -373,7 +373,8 @@
 <p><img src="/img/paper-htb/secnigma.png" srcset="/img/loading.gif" lazyload></p>
 <p>Finally, we accessed and retrieved the root flag.</p>
 <p><img src="/img/paper-htb/root.png" srcset="/img/loading.gif" lazyload></p>
-<p><strong>Thanks For Reading</strong></p>
+<h2 align="center"><strong>Thanks For Reading :)</strong></h2>
+
 <p><img src="/img/paper-htb/Ghibli3.gif" srcset="/img/loading.gif" lazyload></p>
 
                 
