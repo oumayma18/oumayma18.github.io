@@ -1,0 +1,670 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/totoro.png">
+  <link rel="icon" href="/img/totoro.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ouma">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="![](&#x2F;img&#x2F;THM-Piece&#x2F;Screenshot 2025-11-18 114814.png)    Category OSINT    Difficulty Easy   Mission ObjectiveThe investigation began with an isolated email address, cr0wseek_us3r@proton">
+<meta property="og:type" content="article">
+<meta property="og:title" content="THM-Pieces of a profile">
+<meta property="og:url" content="https://oumayma18.github.io/2025/11/18/OSINT-Crowseek-Investigation/index.html">
+<meta property="og:site_name" content="Ouma&#39;s Studio">
+<meta property="og:description" content="![](&#x2F;img&#x2F;THM-Piece&#x2F;Screenshot 2025-11-18 114814.png)    Category OSINT    Difficulty Easy   Mission ObjectiveThe investigation began with an isolated email address, cr0wseek_us3r@proton">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-18T11:42:17.000Z">
+<meta property="article:modified_time" content="2025-11-18T11:51:59.889Z">
+<meta property="article:author" content="Ouma">
+<meta property="article:tag" content="Hack The Box">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Hard">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>THM-Pieces of a profile - Ouma&#39;s Studio</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"oumayma18.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ouma&#39;s Studio</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/t%C3%A9l%C3%A9chargement.jfif') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="THM-Pieces of a profile"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-18 " pubdate>
+          November 18, 2025
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          174 words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          2 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">THM-Pieces of a profile</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>![](&#x2F;img&#x2F;THM-Piece&#x2F;Screenshot 2025-11-18 114814.png)</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>OSINT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Difficulty</td>
+<td>Easy</td>
+</tr>
+</tbody></table>
+<h3 id="Mission-Objective"><a href="#Mission-Objective" class="headerlink" title="Mission Objective"></a>Mission Objective</h3><p>The investigation began with an isolated email address, <strong><code>cr0wseek_us3r@protonmail.com</code></strong>, to uncover the user’s hidden identity, location, and the final flag. Our goal was to follow the digital trail and piece together the profile.</p>
+<h3 id="Task-1-On-which-platform-is-this-email-registered"><a href="#Task-1-On-which-platform-is-this-email-registered" class="headerlink" title="Task 1: On which platform is this email registered?"></a>Task 1: On which platform is this email registered?</h3><p>To begin following the digital trail, our first step was to identify where the starting email, <strong><code>cr0wseek_us3r@protonmail.com</code></strong>, had been used to create accounts. This process is known as <strong>Reverse Email Lookup</strong>.</p>
+<ul>
+<li><strong>Tool Used:</strong> <strong>Holehe</strong> (a simple but effective Python tool that checks account registration via sign-up and password reset forms).</li>
+</ul>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript">holehe cr0wseek_us3r@protonmail.com <span class="hljs-comment">--only-used</span><br></code></pre></td></tr></table></figure>
+
+<p>![](&#x2F;img&#x2F;THM-Piece&#x2F;Screenshot 2025-11-18 115939.png)</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">Answer:</span> Replit, Spotify, <span class="hljs-keyword">and</span> X (Twitter).<br></code></pre></td></tr></table></figure>
+
+<h3 id="Task-2-What-username-is-associated-with-this-email"><a href="#Task-2-What-username-is-associated-with-this-email" class="headerlink" title="Task 2: What username is associated with this email?"></a>Task 2: What username is associated with this email?</h3><p>Our investigation immediately pivoted to finding the user’s real online name, since the email’s name (<code>cr0wseek_us3r</code>) was likely a decoy. We started on <strong>X (Twitter)</strong>, one of the platforms we confirmed in the first step.</p>
+<p>We first searched for the exact name from the email, <strong><code>cr0wseek_us3r</code></strong>, but found nothing.<br>We then tried the simpler, core name, <strong><code>Crowseek</code></strong>. This successful search immediately led us to the target’s active Twitter account:</p>
+<p>![](&#x2F;img&#x2F;THM-Piece&#x2F;Screenshot 2025-11-18 120816.png)</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">Answer:</span> cr0w5e3kn3t<br></code></pre></td></tr></table></figure>
+
+<h3 id="Task-3-Where-does-he-live"><a href="#Task-3-Where-does-he-live" class="headerlink" title="Task 3: Where does he live ?"></a>Task 3: Where does he live ?</h3><p>To find the user’s location, we had to switch platforms because there were no clues on Twitter. Using the confirmed username, <strong><code>@cr0w5e3kn3t</code></strong>, we looked at the other accounts, which included <strong>Replit</strong>. We found the user’s Replit profile using the direct link, <code>https://replit.com/@cr0w5e3kn3t</code>(We could also use a tool like <strong>WhatsMyName</strong> to quickly find all of their social media pages). </p>
+<p>![](&#x2F;img&#x2F;THM-Piece&#x2F;Screenshot 2025-11-18 121630.png)</p>
+<p>Luckily, the user had written the city where they live right on their public Replit profile</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">Answer:</span> Cairo<br></code></pre></td></tr></table></figure>
+
+<h3 id="Task-4-On-which-platform-does-this-username-have-the-most-public-activity"><a href="#Task-4-On-which-platform-does-this-username-have-the-most-public-activity" class="headerlink" title="Task 4 : On which platform does this username have the most public activity?"></a>Task 4 : On which platform does this username have the most public activity?</h3><p>To find out where the user is most active, we checked their posts on the social media accounts we had already found. On the user’s Twitter profile (<code>@cr0w5e3kn3t</code>), we saw a post where they clearly stated: <strong>“I am really active on X!”</strong> Because the user told us directly that they are most active on this platform.</p>
+<p>![](&#x2F;img&#x2F;THM-Piece&#x2F;Screenshot 2025-11-18 121945.png)</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">Answer:</span> <span class="hljs-built_in">X</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="Task-5-What-is-the-final-flag-hidden-in-one-of-the-accounts"><a href="#Task-5-What-is-the-final-flag-hidden-in-one-of-the-accounts" class="headerlink" title="Task 5 : What is the final flag hidden in one of the accounts ?"></a>Task 5 : What is the final flag hidden in one of the accounts ?</h3><p>Finding the final flag was the trickiest step because it was so well hidden. We checked <strong>Twitter</strong> and spent a lot of time trying to find the <strong>Spotify account</strong>, but the flag wasn’t in any of the normal spots :((</p>
+<p>We focused on the most important clue: a weird post on the user’s Twitter that contained the code <strong><code>5LbQULjs</code></strong>:</p>
+<p>![](&#x2F;img&#x2F;THM-Piece&#x2F;Pasted image 20251118123018.png)</p>
+<p>We realized this code was a unique ID that had to link to a hidden file somewhere else. Since the user was trying to hide a text secret, and <strong>Pastebin</strong> is the most common website for hiding text in these types of challenges, we logically decided to test the code as a Pastebin link. Our guess worked! We successfully went to <strong><code>https://pastebin.com/5LbQULjs</code></strong>, which immediately showed us the text file containing the final flag</p>
+<p>![](&#x2F;img&#x2F;THM-Piece&#x2F;Screenshot 2025-11-18 123650.png)</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">Answer:</span> THM&#123;Th3_F33d_By_Cr0w5eek&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Thanks-For-Reading"><a href="#Thanks-For-Reading" class="headerlink" title="Thanks For Reading"></a>Thanks For Reading</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Hack-The-Box/" class="print-no-link">#Hack The Box</a>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/Hard/" class="print-no-link">#Hard</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>THM-Pieces of a profile</div>
+      <div>https://oumayma18.github.io/2025/11/18/OSINT-Crowseek-Investigation/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Ouma</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 18, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/13/HTB-Eureka/" title="HTB-Eureka">
+                        <span class="hidden-mobile">HTB-Eureka</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Made With</span></a> <i class="iconfont icon-love"></i> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
