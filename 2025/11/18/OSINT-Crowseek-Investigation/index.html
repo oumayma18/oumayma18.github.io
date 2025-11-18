@@ -19,12 +19,12 @@
   <meta name="author" content="Ouma">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Category OSINT    Difficulty Easy   Mission ObjectiveThe investigation began with an isolated email address, cr0wseek_us3r@protonmail.com, to uncover the user’s hidden identity, location, and the">
+    <meta name="description" content="Category OSINT    Difficulty Easy   MissionThe investigation began with an isolated email address, cr0wseek_us3r@protonmail.com, to uncover the user’s hidden identity, location, and the final flag">
 <meta property="og:type" content="article">
 <meta property="og:title" content="THM-Pieces of a profile">
 <meta property="og:url" content="https://oumayma18.github.io/2025/11/18/OSINT-Crowseek-Investigation/index.html">
 <meta property="og:site_name" content="Ouma&#39;s Studio">
-<meta property="og:description" content="Category OSINT    Difficulty Easy   Mission ObjectiveThe investigation began with an isolated email address, cr0wseek_us3r@protonmail.com, to uncover the user’s hidden identity, location, and the">
+<meta property="og:description" content="Category OSINT    Difficulty Easy   MissionThe investigation began with an isolated email address, cr0wseek_us3r@protonmail.com, to uncover the user’s hidden identity, location, and the final flag">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://oumayma18.github.io/img/THM-Piece/Screenshot-2025-11-18-114814.png">
 <meta property="og:image" content="https://oumayma18.github.io/img/THM-Piece/Screenshot-2025-11-18-115939.png">
@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://oumayma18.github.io/img/THM-Piece/Screenshot-2025-11-18-121945.png">
 <meta property="og:image" content="https://oumayma18.github.io/img/THM-Piece/Screenshot-2025-11-18-130207.png">
 <meta property="article:published_time" content="2025-11-18T11:42:17.000Z">
-<meta property="article:modified_time" content="2025-11-18T12:03:16.128Z">
+<meta property="article:modified_time" content="2025-11-18T12:05:25.201Z">
 <meta property="article:author" content="Ouma">
 <meta property="article:tag" content="Easy">
 <meta property="article:tag" content="TryHackMe">
@@ -298,7 +298,7 @@
 <td>Easy</td>
 </tr>
 </tbody></table>
-<h3 id="Mission-Objective"><a href="#Mission-Objective" class="headerlink" title="Mission Objective"></a>Mission Objective</h3><p>The investigation began with an isolated email address, <strong><code>cr0wseek_us3r@protonmail.com</code></strong>, to uncover the user’s hidden identity, location, and the final flag. Our goal was to follow the digital trail and piece together the profile.</p>
+<h3 id="Mission"><a href="#Mission" class="headerlink" title="Mission"></a>Mission</h3><p>The investigation began with an isolated email address, <strong><code>cr0wseek_us3r@protonmail.com</code></strong>, to uncover the user’s hidden identity, location, and the final flag. Our goal was to follow the digital trail and piece together the profile.</p>
 <h3 id="Task-1-On-which-platform-is-this-email-registered"><a href="#Task-1-On-which-platform-is-this-email-registered" class="headerlink" title="Task 1: On which platform is this email registered?"></a>Task 1: On which platform is this email registered?</h3><p>To begin following the digital trail, our first step was to identify where the starting email, <strong><code>cr0wseek_us3r@protonmail.com</code></strong>, had been used to create accounts. This process is known as <strong>Reverse Email Lookup</strong>.</p>
 <ul>
 <li><strong>Tool Used:</strong> <strong>Holehe</strong> (a simple but effective Python tool that checks account registration via sign-up and password reset forms).</li>
@@ -306,7 +306,7 @@
 <figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript">holehe cr0wseek_us3r@protonmail.com <span class="hljs-comment">--only-used</span><br></code></pre></td></tr></table></figure>
 
 <p><img src="/img/THM-Piece/Screenshot-2025-11-18-115939.png" srcset="/img/loading.gif" lazyload></p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">Answer:</span> Replit, Spotify, <span class="hljs-keyword">and</span> X (Twitter).<br></code></pre></td></tr></table></figure>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">Answer:</span> Replit, Spotify, <span class="hljs-built_in">X</span> (Twitter).<br></code></pre></td></tr></table></figure>
 
 <h3 id="Task-2-What-username-is-associated-with-this-email"><a href="#Task-2-What-username-is-associated-with-this-email" class="headerlink" title="Task 2: What username is associated with this email?"></a>Task 2: What username is associated with this email?</h3><p>Our investigation immediately pivoted to finding the user’s real online name, since the email’s name (<code>cr0wseek_us3r</code>) was likely a decoy. We started on <strong>X (Twitter)</strong>, one of the platforms we confirmed in the first step.</p>
 <p>We first searched for the exact name from the email, <strong><code>cr0wseek_us3r</code></strong>, but found nothing.<br>We then tried the simpler, core name, <strong><code>Crowseek</code></strong>. This successful search immediately led us to the target’s active Twitter account:</p>
